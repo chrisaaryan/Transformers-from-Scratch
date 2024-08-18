@@ -1,0 +1,64 @@
+Class input embedding
+
+Isme hum basically bas jo words h unko vector form m ya ek aise form m krra which are acceptable by model
+and we are using the embedding function present in torch
+
+
+Class Positional Encoding
+
+Issme hum basically jo words h unko unki positions k hisab se rkhre mtlb kiska kaha kya importance h aur isme hum ek formula bhi lagare even aur odd positions k liye
+woh notes m likha h fir hum bas inko aake forward krdere h humare embedded matrix k sath add krke
+
+Class LayerNormalization:
+
+Isme hum basically hum jo normalization wali layer implement krre h mean aur std dev se but hum isme hum 2 naye param use krre
+alpha jo multiplicative h aur beta jo additive aur dono learnable h yeh isliye h taki humari value bas (0,1) k beech hi na ghumte rahe
+prr aur bhi value aaye depending on the values isliye learnable h
+
+class feedforwardblock:
+
+yeh basically ek common function h jo encoder decoder dono m lgra aur yeh bas jo humare vector h usko ek layer se
+dusre m bhejra dimensions change krke taki woh aage k liye thik ho
+        # (batch,seq_len,d_model)-->(batch,seq_len,d_ff)-->(batch,seq_len,d_model)
+aise
+
+class MultiheadAttentionBlock:
+
+Isme hum bahut kuch krre h notes m dekhna aur to summarize:
+jo input h usko 3 jagah bhejre h as a query ,key, value fir ek weigth matrix se multiply krre
+fir in 3 matrix ko jitne head h unme divide krre multi head naam h na block ka fir 
+yeh 3 head m attention ka formula lagare h aur last m saare heads ko concat krdere h 
+Explaination aur formula k liye notes m likha h 
+
+
+Class residual connection:
+ab isme hum bas woh functionality implement krre h ki hum previous layer ko add norm m bhejre h so woh 
+hum krre h 
+
+class EncoderBlock:
+
+Is class m hum humara encoder block m kya kya h woh dalre jese self_attention_block feed_forward_block aur residual_connections
+
+class Encoder
+
+Isme humne jo encoder block banaya woh N baar use hoga toh so woh implement krre h aur normalization krke mask krre
+
+class DecoderBlock
+isme jesa hum EncoderBlock m krre the wohi krre bas isme self_attention_block cross_attention_block feed_forward_block residual_connections yeh sab banare aur forward function m
+hum residual connection implement krke forward krdenge
+
+class decoder
+isme bas N baar k liye prep krke bhejdnege
+
+
+Class ProjectionLayer
+
+yeh decoder se pass hone k baad hum shape change krenge usse ek linear function se pass krke taki woh vocab_size m convert hojaye
+
+Class Transformers
+
+ab isme sab kuch h yeh isliye h ki jab hum aage function banayenge toh jo iska object hoga woh humara tranformer banega 
+isme pure tranformer ka class bngya h
+
+
+Iske baad hum ek function banate h jo humare tranformer ko build krdega
